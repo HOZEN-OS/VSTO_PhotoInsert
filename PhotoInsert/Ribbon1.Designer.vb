@@ -43,7 +43,6 @@
     Private Sub InitializeComponent()
         Me.Tab1 = Me.Factory.CreateRibbonTab
         Me.Group1 = Me.Factory.CreateRibbonGroup
-        Me.BtnAddPhoto = Me.Factory.CreateRibbonButton
         Me.Group2 = Me.Factory.CreateRibbonGroup
         Me.ChkHCenter = Me.Factory.CreateRibbonCheckBox
         Me.ChkVCenter = Me.Factory.CreateRibbonCheckBox
@@ -55,11 +54,16 @@
         Me.Group4 = Me.Factory.CreateRibbonGroup
         Me.ChkWMatch = Me.Factory.CreateRibbonCheckBox
         Me.ChkHMatch = Me.Factory.CreateRibbonCheckBox
+        Me.BtnAddPhoto = Me.Factory.CreateRibbonButton
+        Me.ChkComp = Me.Factory.CreateRibbonCheckBox
+        Me.BtnComp = Me.Factory.CreateRibbonButton
+        Me.Group5 = Me.Factory.CreateRibbonGroup
         Me.Tab1.SuspendLayout()
         Me.Group1.SuspendLayout()
         Me.Group2.SuspendLayout()
         Me.Group3.SuspendLayout()
         Me.Group4.SuspendLayout()
+        Me.Group5.SuspendLayout()
         Me.SuspendLayout()
         '
         'Tab1
@@ -68,6 +72,7 @@
         Me.Tab1.Groups.Add(Me.Group2)
         Me.Tab1.Groups.Add(Me.Group3)
         Me.Tab1.Groups.Add(Me.Group4)
+        Me.Tab1.Groups.Add(Me.Group5)
         Me.Tab1.Label = "写真取込"
         Me.Tab1.Name = "Tab1"
         '
@@ -76,14 +81,6 @@
         Me.Group1.Items.Add(Me.BtnAddPhoto)
         Me.Group1.Label = "写真追加"
         Me.Group1.Name = "Group1"
-        '
-        'BtnAddPhoto
-        '
-        Me.BtnAddPhoto.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge
-        Me.BtnAddPhoto.Label = "写真選択"
-        Me.BtnAddPhoto.Name = "BtnAddPhoto"
-        Me.BtnAddPhoto.OfficeImageId = "PictureReflectionGalleryItem"
-        Me.BtnAddPhoto.ShowImage = True
         '
         'Group2
         '
@@ -135,6 +132,7 @@
         '
         Me.Group4.Items.Add(Me.ChkWMatch)
         Me.Group4.Items.Add(Me.ChkHMatch)
+        Me.Group4.Items.Add(Me.ChkComp)
         Me.Group4.Label = "サイズ"
         Me.Group4.Name = "Group4"
         '
@@ -147,6 +145,33 @@
         '
         Me.ChkHMatch.Label = "高さで合わせる"
         Me.ChkHMatch.Name = "ChkHMatch"
+        '
+        'BtnAddPhoto
+        '
+        Me.BtnAddPhoto.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge
+        Me.BtnAddPhoto.Label = "写真選択"
+        Me.BtnAddPhoto.Name = "BtnAddPhoto"
+        Me.BtnAddPhoto.OfficeImageId = "PictureReflectionGalleryItem"
+        Me.BtnAddPhoto.ShowImage = True
+        '
+        'ChkComp
+        '
+        Me.ChkComp.Label = "圧縮する"
+        Me.ChkComp.Name = "ChkComp"
+        '
+        'BtnComp
+        '
+        Me.BtnComp.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge
+        Me.BtnComp.Label = "全て圧縮"
+        Me.BtnComp.Name = "BtnComp"
+        Me.BtnComp.OfficeImageId = "PictureSwapPicture"
+        Me.BtnComp.ShowImage = True
+        '
+        'Group5
+        '
+        Me.Group5.Items.Add(Me.BtnComp)
+        Me.Group5.Label = "その他"
+        Me.Group5.Name = "Group5"
         '
         'Ribbon1
         '
@@ -163,6 +188,8 @@
         Me.Group3.PerformLayout()
         Me.Group4.ResumeLayout(False)
         Me.Group4.PerformLayout()
+        Me.Group5.ResumeLayout(False)
+        Me.Group5.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -181,6 +208,9 @@
     Friend WithEvents ChkWMatch As Microsoft.Office.Tools.Ribbon.RibbonCheckBox
     Friend WithEvents ChkHMatch As Microsoft.Office.Tools.Ribbon.RibbonCheckBox
     Friend WithEvents ChkRSel As Microsoft.Office.Tools.Ribbon.RibbonCheckBox
+    Friend WithEvents ChkComp As Microsoft.Office.Tools.Ribbon.RibbonCheckBox
+    Friend WithEvents BtnComp As Microsoft.Office.Tools.Ribbon.RibbonButton
+    Friend WithEvents Group5 As Microsoft.Office.Tools.Ribbon.RibbonGroup
 End Class
 
 Partial Class ThisRibbonCollection

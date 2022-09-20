@@ -8,6 +8,7 @@ Module Photo
     Public ImgSetting As Setting = Setting.GetSingleton()
     Private ReadOnly Application As Excel.Application = Globals.ThisAddIn.Application
     Private OpenDirectory As String = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures)
+    Private PicSize As New Size
 
     Public Function IsSelect() As Boolean
         If Application.Selection.Columns.Count > 0 Then
@@ -35,6 +36,8 @@ Module Photo
     Public Sub PutPhotos(mFileList As ArrayList)
         If mFileList.Count > 0 Then
             Application.ScreenUpdating = False
+            PicSize.Width = GetWidth()
+            PicSize.Height = GetHeight()
             PutPhoto(mFileList)
             Application.ScreenUpdating = True
         End If
@@ -59,30 +62,38 @@ Module Photo
                 .ScaleHeight(1, Microsoft.Office.Core.MsoTriState.msoTrue)
                 .ScaleWidth(1, Microsoft.Office.Core.MsoTriState.msoTrue)
 
-                Dim W As Double = GetWidth()
-                Dim H As Double = GetHeight()
                 Select Case ImgSetting.Size
                     Case Setting.HVType.NONE
-                        .Width = W
-                        If .Height > H Then
-                            .Height = H
+                        .Width = PicSize.Width
+                        If .Height > PicSize.Height Then
+                            .Height = PicSize.Height
                         End If
                     Case Setting.HVType.HORIZON
-                        .Width = W
+                        .Width = PicSize.Width
                     Case Setting.HVType.VERTICAL
-                        .Height = H
+                        .Height = PicSize.Height
                 End Select
 
-                If ImgSetting.Center = Setting.HVType.HORIZON AndAlso W > .Width Then
-                    .Left = Application.ActiveCell.Left + (W - .Width) / 2
+                If ImgSetting.Center = Setting.HVType.HORIZON AndAlso PicSize.Width > .Width Then
+                    .Left = Application.ActiveCell.Left + (PicSize.Width - .Width) / 2
                 Else
                     .Left = Application.ActiveCell.Left
                 End If
 
-                If ImgSetting.Center = Setting.HVType.VERTICAL AndAlso H > .Height Then
-                    .Top = Application.ActiveCell.Top + (H - .Height) / 2
+                If ImgSetting.Center = Setting.HVType.VERTICAL AndAlso PicSize.Height > .Height Then
+                    .Top = Application.ActiveCell.Top + (PicSize.Height - .Height) / 2
                 Else
                     .Top = Application.ActiveCell.Top
+                End If
+
+
+                If ImgSetting.Compress Then
+                    Dim P As New Point(.Left, .Top)
+                    .Copy
+                    .Delete
+                    Application.ActiveSheet.PasteSpecial(Format:="図 (JPEG)")
+                    Application.Selection.Top = P.Y
+                    Application.Selection.Left = P.X
                 End If
             End With
 
@@ -206,4 +217,17 @@ Module Photo
 
         Return NewSize
     End Function
+
+    Public Sub CompImage()
+        For Each es As Excel.Shape In Application.ActiveSheet.Shapes
+            If es.Type = Microsoft.Office.Core.MsoShapeType.msoPicture Then
+                Dim P As New Point(es.Left, es.Top)
+                es.Copy()
+                es.Delete()
+                Application.ActiveSheet.PasteSpecial(Format:="図 (JPEG)")
+                Application.Selection.Top = P.Y
+                Application.Selection.Left = P.X
+            End If
+        Next
+    End Sub
 End Module

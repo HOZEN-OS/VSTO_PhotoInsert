@@ -30,4 +30,6 @@ Public Class Setting
     Public Property Center As HVType
 
     Public Property Size As HVType
+
+    Public Property Compress As Boolean
 End Class

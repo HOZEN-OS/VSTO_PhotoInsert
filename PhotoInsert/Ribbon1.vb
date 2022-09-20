@@ -93,4 +93,12 @@ Public Class Ribbon1
             ImgSetting.Size = Setting.HVType.NONE
         End If
     End Sub
+
+    Private Sub ChkComp_Click(sender As Object, e As RibbonControlEventArgs) Handles ChkComp.Click
+        ImgSetting.Compress = ChkComp.Checked
+    End Sub
+
+    Private Sub BtnComp_Click(sender As Object, e As RibbonControlEventArgs) Handles BtnComp.Click
+        CompImage()
+    End Sub
 End Class
