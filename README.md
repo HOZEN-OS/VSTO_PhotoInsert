@@ -3,8 +3,7 @@
 
 エクセルで写真を取り込む時のアドインです。
 
-![ribbon](https://user-images.githubusercontent.com/78771008/185023973-fe704869-084f-4103-b991-b359d9f579b2.png)
-
+![ribbon](https://user-images.githubusercontent.com/78771008/191179031-4eb8a081-abae-4c0b-ba70-c634645f8480.png)
 
 
 選択されたセル（複数選択可）に合わせて写真を取り込みます。
@@ -17,7 +16,7 @@
 
  
 
-【位置】
+#### 【位置】
 
 横センター：選択されたセル幅が写真の幅より広い場合に左右の空白が同じになるようにします。
 
@@ -25,7 +24,7 @@
 
  
 
-【トリミング】
+#### 【トリミング】
 
 選択セル：選択されたセルにぴったり合うように写真をトリミングします。
 
@@ -37,13 +36,24 @@
 
  
 
-【サイズ】
+#### 【サイズ】
 
 横幅で合わせる：選択されたセルの高さを無視して選択されたセルの横幅に合わせます。
 
 高さで合わせる：選択されたセルの横幅を無視して選択されたセルの高さに合わせます。
 
+圧縮する：取込時に画像をJPEGに圧縮します。　※
 
 
-[![CC BY-NC-ND 4.0](https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png)](http://creativecommons.org/licenses/by-nc-nd/4.0/)
+#### 【その他】
+
+全て圧縮：シート上の全ての画像を圧縮します。　※
+
+
+※　圧縮サイズは、オプション→詳細設定→既定の解像度のサイズになります。
+
+
+
 この作品は [クリエイティブ・コモンズ 表示 - 非営利 - 改変禁止 4.0 国際 ライセンス](http://creativecommons.org/licenses/by-nc-nd/4.0/) の下に提供されています。
+[![CC BY-NC-ND 4.0](https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png)](http://creativecommons.org/licenses/by-nc-nd/4.0/)
+
